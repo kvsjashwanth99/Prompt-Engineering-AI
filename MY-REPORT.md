@@ -1,57 +1,102 @@
-![GenI-Banner](https://github.com/genilab-fau/genial-fau.github.io/blob/8f1a2d3523f879e1082918c7bba19553cb6e7212/images/geni-lab-banner.png?raw=true)
+## Exploring Prompt Engineering with Ollama for Automated Requirement Analysis
 
-# {title of your research project}
+## Investigating the effectiveness of prompt engineering techniques in GenAI-driven SDLC automation.
 
-1-liner description of your project
+* Authors: Your Name  
+* Academic Supervisor: Dr. Fernando Koch  
 
-<!-- WHEN APPLICABLE, REMOVE THE COMMENT MARK AND COMPLETE
-This is a response to the Assignment part of the COURSE.
--->
-
-* Authors: [NAME1](http://www.YOURPAGE.xxx), [NAME_n](http://www.YOURPAGE.xxx)
-* Academic Supervisor: [Dr. Fernando Koch](http://www.fernandokoch.me)
-
-  
-# Research Question 
-
-1-liner description of your request (or exploration).. Make it enthusiastically!
+## Research Question
+How can prompt engineering techniques be leveraged to enhance automated requirement analysis in software development lifecycles using Ollama?
 
 ## Arguments
+### What is already known about this topic:
+- Prompt engineering is crucial for optimizing AI-generated responses.
+- NLP models like Ollama can be fine-tuned to improve requirement analysis automation.
+- The challenge lies in designing effective prompts for accurate and context-aware outputs.
 
-#### What is already known about this topic
+### What this research is exploring:
+- We employ structured and iterative prompt refinement techniques.
+- We are building a simulated GenAI pipeline to evaluate prompt effectiveness.
+- We explore parameter tuning, such as temperature and response context size, in Ollama.
 
-* you could do {something} to achieve {some result}
-* the challenges of {doing something}
-* the possibility of {doing something else}
-* ...
+## Implications for practice
+- It will be easier to automate requirement analysis in SDLC.
+- It will optimize the interaction between AI models and software engineers.
+- We will better understand how prompt variations impact AI-generated responses.
 
-#### What this research is exploring
+## Research Method
+We developed a structured pipeline to experiment with prompt engineering in Ollama:
 
-<!-- Free-format; use the topics that are applicable to your exploration  -->
+### Pipeline Implementation:
+- Created `_pipeline.py` to handle model requests.
+- Implemented `execute_prompt()` to automate prompt execution.
 
-* we employ {some technique}
-* we are building {something}
-* we are exploring {some idea or technology}
+### Experiment Execution:
+- Defined sample prompts (e.g., "Explain the significance of Newton's laws in physics").
+- Executed `zero_shot.py` to test the pipeline.
+- Evaluated response quality and processing time.
 
-#### Implications for practice
+### Parameter Adjustments:
+- Experimented with different models and inference parameters.
+- Adjusted response length, temperature, and contextual window size.
 
-<!-- Free-format; use the topics that are applicable to your exploration  -->
+## Results
+The results of the zero-shot and few-shot experiments provide valuable insights into the effectiveness of the automated requirement analysis pipeline.
 
-* it will be easier to {do something}
-* it will optimize {some process}
-* we will better understand {some process}
-* ...
+## Zero-Shot Results
+For the zero-shot experiment, the model was asked to generate functional and non-functional requirements for a fitness tracker app. The generated content includes the following:
 
-# Research Method
+### User Stories:
+- The model generated five user stories describing various user needs and fitness tracking functionalities, from tracking daily steps and calories burned to monitoring heart rate and providing personalized recommendations.
 
-Describe how you are building this research process.
+### Functional Requirements:
+- The model generated five functional requirements such as Activity Tracking, Goal Setting and Progress Monitoring, Sleep Tracking, Social Sharing, and Personalized Recommendations. Each requirement addressed specific features necessary for fulfilling the app's user stories.
 
-<!-- WHEN APPLICABLE AND AVAILABLE -->
+### Non-Functional Requirements:
+- The model generated five non-functional requirements, focusing on the quality aspects such as Usability (ease of data entry), Security (data encryption), Performance (real-time tracking), Availability (cloud storage), and Maintainability (regular software updates).
 
-# Results
+The output demonstrates that Ollama effectively identifies essential requirements and categorizes them into functional and non-functional types.
 
-Describe the results achieved through your research process.
+## Few-Shot Results
+For the few-shot experiment, the model was given several examples of user stories and their corresponding functional and non-functional requirements. The model generated the following for a new user story:
 
-# Further research
+### User Story:
+"As a project manager, I want a dashboard to track real-time project progress so that I can ensure timely completion."
 
-Describe what we could do next and propose new ideas for further research.
+### Functional Requirements:
+- A real-time progress tracking dashboard for project managers.
+- The ability to view project milestones, timelines, and task status.
+- Alerts or notifications when tasks are nearing deadlines or have been completed.
+
+### Non-Functional Requirements:
+- The dashboard should update within 5 seconds.
+- Project data should be stored securely and be backed up regularly.
+- The system must handle a large volume of concurrent users and requests without significant performance degradation.
+
+### Security Considerations:
+- Data encryption at rest and in transit.
+- Authentication and authorization mechanisms to prevent unauthorized access.
+- Monitoring for suspicious activity or data breaches.
+
+### Scalability and Performance:
+- Implement load balancing and distributed architecture.
+- Optimize database queries and indexing for faster performance.
+- Use caching strategies to reduce the load on the database.
+
+### User Experience:
+- Ensure the dashboard is visually appealing and easy to navigate.
+- Provide intuitive filtering, sorting, and search capabilities.
+- Include real-time analytics and insights to help project managers make data-driven decisions.
+
+By considering both functional and non-functional requirements, security, scalability, performance, and user experience, the model provides a well-rounded requirement analysis for real-time project tracking dashboards.
+
+## Key Findings from Both Approaches:
+- **Zero-Shot:** The model successfully generated basic requirements based on prompts, even without prior examples. The response was accurate but generalized.
+- **Few-Shot:** By providing examples of user stories and requirements, the model produced more specific and nuanced outputs, showcasing a deeper understanding of user needs.
+
+## Further Research
+- Explore multi-turn dialogue prompts for better requirement elicitation.
+- Integrate additional GenAI models for comparison.
+- Automate prompt generation and refinement using meta-prompting techniques.
+- Extend the study to assess prompt effectiveness in different SDLC stages.
+

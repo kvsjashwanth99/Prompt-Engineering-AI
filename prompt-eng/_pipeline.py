@@ -166,10 +166,34 @@ if __name__ == "__main__":
                          target="open-webui",   
                          model="llama3.2:latest", 
                          prompt=PROMPT, 
-                         temperature=1.0, 
+                         temperature=0.7, 
                          num_ctx=5555555, 
                          num_predict=1)
 
     time, response = model_req(payload=payload)
     print(response)
     if time: print(f'Time taken: {time}s')
+    
+    
+def execute_prompt(prompt, model="llama3.2:latest", target="ollama", **kwargs):
+    """
+    Function to execute a prompt using the defined model pipeline.
+    
+    Args:
+        prompt (str): The input text to be processed by the model.
+        model (str): The model name.
+        target (str): The target API (e.g., "ollama" or "open-webui").
+        **kwargs: Additional parameters for model inference.
+    
+    Returns:
+        tuple: (response_time, response_text)
+    """
+    payload = create_payload(model=model, prompt=prompt, target=target, **kwargs)
+    response_time, response_text = model_req(payload=payload)
+    
+    return response_time, response_text
+
+def automated_prompt_generation(user_story):
+    base_prompt = "You are an AI specializing in software development. Generate a requirement analysis for the following user story:\n"
+    prompt = base_prompt + f"User Story: {user_story}\n\nRequirements:\n"
+    return prompt
