@@ -1,49 +1,64 @@
-import requests
-import json
+#!/usr/bin/env python
+# coding: utf-8
 
-# Ollama API endpoint
-OLLAMA_API_URL = "http://localhost:11434/api/generate"
+# 
+# 
+# 
 
-# Define a function to generate requirements using Ollama
-def generate_requirements(prompt_template, model="llama3"):
-    payload = {
-        "model": model,
-        "prompt": prompt_template,
-        "stream": False  # Set to True if you want streaming responses
-    }
-    response = requests.post(OLLAMA_API_URL, json=payload)
-    if response.status_code == 200:
-        return response.json()["response"].strip()
-    else:
-        raise Exception(f"Error: {response.status_code}, {response.text}")
+# # Zero-Shot Prompting
+# 
+# Zero-shot prompting refers to a technique in prompt engineering where you provide a model with a task without any prior examples. The model is expected to understand and generate a response or complete the task purely based on the given instruction.
+# 
+# In other words, the model is given "zero" prior training examples or demonstrations in the prompt and relies on its pre-trained knowledge to infer what is needed.
+# 
+# ## References:
+# * [Wei et al. (2022)](https://arxiv.org/pdf/2109.01652.pdf): demonstrate how instruction tuning improves zero-shot learning 
 
-# Define Prompt Templates
-user_story_template = """
-Generate 5 user stories for a fitness tracker app. Each story should follow the format:
-"As a [type of user], I want [some goal] so that [some reason]."
-"""
+# ## Running this code on MyBind.org
+# 
+# Note: remember that you will need to **adjust CONFIG** with **proper URL and API_KEY**!
+# 
+# [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GenILab-FAU/prompt-eng/HEAD?urlpath=%2Fdoc%2Ftree%2Fprompt-eng%2Fzero_shot.ipynb)
+# 
+# 
 
-functional_req_template = """
-Generate 5 functional requirements for a fitness tracker app. Each requirement should describe a feature or functionality.
-"""
+# In[ ]:
 
-non_functional_req_template = """
-Generate 5 non-functional requirements for a fitness tracker app. Each requirement should describe a quality attribute, such as performance, security, or usability.
-"""
 
-# Generate Requirements
-user_stories = generate_requirements(user_story_template)
-functional_reqs = generate_requirements(functional_req_template)
-non_functional_reqs = generate_requirements(non_functional_req_template)
+##
+## ZERO SHOT PROMPTING
+##
 
-# Save Results to a JSON File
-requirements = {
-    "user_stories": user_stories.split("\n"),
-    "functional_requirements": functional_reqs.split("\n"),
-    "non_functional_requirements": non_functional_reqs.split("\n"),
-}
+from _pipeline import create_payload, model_req
 
-with open("requirements.json", "w") as f:
-    json.dump(requirements, f, indent=4)
+#### (1) Adjust the inbounding  Prompt, simulating inbounding requests from users or other systems
+MESSAGE = "What is 984 * log(2)"
 
-print("Requirements generated and saved to requirements.json!")
+#### (2) Adjust the Prompt Engineering Technique to be applied, simulating Workflow Templates
+PROMPT = MESSAGE 
+
+#### (3) Configure the Model request, simulating Workflow Orchestration
+# Documentation: https://github.com/ollama/ollama/blob/main/docs/api.md
+payload = create_payload(target="ollama",
+                         model="llama3.2:latest", 
+                         prompt=PROMPT, 
+                         temperature=1.0, 
+                         num_ctx=100, 
+                         num_predict=100)
+
+### YOU DONT NEED TO CONFIGURE ANYTHING ELSE FROM THIS POINT
+# Send out to the model
+time, response = model_req(payload=payload)
+print(response)
+if time: print(f'Time taken: {time}s')
+
+
+# ---
+# 
+# ## How to improve it?
+# 
+# * **Use Clear and Concise Instructions**: Be specific about the task and desired format.
+#     * Bad Prompt: “Summarize this.”
+#     * Good Prompt: “Summarize this paragraph in one sentence.”
+# * **Add Context**: Providing background can help the model interpret ambiguous prompts better.
+# * **Specify Output Format**: If a particular structure is needed, describe it in the instruction.

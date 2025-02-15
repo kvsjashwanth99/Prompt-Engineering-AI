@@ -176,22 +176,11 @@ if __name__ == "__main__":
     
     
 def execute_prompt(prompt, model="llama3.2:latest", target="ollama", **kwargs):
-    """
-    Function to execute a prompt using the defined model pipeline.
-    
-    Args:
-        prompt (str): The input text to be processed by the model.
-        model (str): The model name.
-        target (str): The target API (e.g., "ollama" or "open-webui").
-        **kwargs: Additional parameters for model inference.
-    
-    Returns:
-        tuple: (response_time, response_text)
-    """
     payload = create_payload(model=model, prompt=prompt, target=target, **kwargs)
-    response_time, response_text = model_req(payload=payload)
-    
-    return response_time, response_text
+    response_time, response_text = model_req(payload=payload)  # Returns (time, response)
+
+    return response_time, response_text  # 🚨 Returns a tuple, but we expect a string!
+
 
 def automated_prompt_generation(user_story):
     base_prompt = "You are an AI specializing in software development. Generate a requirement analysis for the following user story:\n"
