@@ -1,4 +1,4 @@
-## Exploring Prompt Engineering with Ollama for Automated Requirement Analysis
+### Exploring Prompt Engineering with Ollama for Automated Requirement Analysis
 
 Investigating the effectiveness of prompt engineering techniques in GenAI-driven SDLC automation.
 
