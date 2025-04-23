@@ -2,7 +2,7 @@
 
 # Contributing
 
-We welcome contributions to this project in the form of:
+We welcome contributions to this project in the form of;
 * [Immediate Help Needed](#-immediate-help-needed-): completing missing code
 * [Experimenting with Prompt Engineering Techniques](#experimenting-with-prompt-engineering-techniques) 
 * [Contributing to Research](#contributing-to-research)
